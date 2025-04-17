@@ -1,0 +1,60 @@
+<!-- frontend/login.html -->
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <title>Login</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="container">
+    <h2>Login</h2>
+    <input type="text" id="cpf" placeholder="CPF" maxlength="14" required>
+    <input type="password" id="senha" placeholder="Senha" required>
+    <button type="button" onclick="login()">Entrar</button>
+    <div class="mensagem" id="mensagem"></div>
+    <div style="text-align:center; margin-top: 15px;">
+      <a href="register.html">Ainda não tem conta? Cadastre-se</a> |
+      <a href="recuperar.html">Esqueceu a senha?</a>
+    </div>
+  </div>
+
+  <script>
+    const cpfInput = document.getElementById('cpf');
+    cpfInput.addEventListener('input', () => {
+      let v = cpfInput.value.replace(/\D/g, '');
+      if (v.length > 3 && v.length <= 6) v = v.replace(/(\d{3})(\d+)/, '$1.$2');
+      else if (v.length > 6 && v.length <= 9) v = v.replace(/(\d{3})(\d{3})(\d+)/, '$1.$2.$3');
+      else if (v.length > 9) v = v.replace(/(\d{3})(\d{3})(\d{3})(\d{1,2})/, '$1.$2.$3-$4');
+      cpfInput.value = v;
+    });
+
+    async function login() {
+      const cpf = document.getElementById('cpf').value.replace(/\D/g, '');
+      const senha = document.getElementById('senha').value;
+      const msg = document.getElementById('mensagem');
+      msg.textContent = '';
+
+      try {
+        const res = await fetch('https://SEU_BACKEND_PUBLICO.up.railway.app/api/login', {
+  method: 'POST',
+  headers: { 'Content-Type': 'application/json' },
+  credentials: 'include',
+  body: JSON.stringify({ cpf, senha })
+});
+
+        const data = await res.json();
+
+        if (res.ok) {
+          localStorage.setItem('token', data.token);
+          window.location.href = 'dashboard.html';
+        } else {
+          msg.textContent = data.mensagem || 'Erro ao fazer login.';
+        }
+      } catch (error) {
+        msg.textContent = 'Erro ao tentar logar.';
+      }
+    }
+  </script>
+</body>
+</html>

@@ -1,0 +1,85 @@
+.sidebar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 240px;
+    background-color: var(--primary-color);
+    color: white;
+    overflow-y: auto;
+    overflow-x: hidden;
+    scrollbar-width: none;
+    padding-top: 0;
+    z-index: 999;
+    transition: width 0.3s ease;
+  }
+  
+  .sidebar.collapsed {
+    width: 60px;
+  }
+  
+  .sidebar::-webkit-scrollbar {
+    display: none;
+  }
+  
+  .user-info {
+    text-align: center;
+    color: white;
+    padding: 20px 10px 10px;
+    font-size: 14px;
+    font-weight: bold;
+    white-space: nowrap;
+  }
+  
+  .sidebar.collapsed .user-info {
+    display: none;
+  }
+  
+  .hamburger {
+    position: absolute;
+    top: 20px;
+    right: -16px;
+    width: 32px;
+    height: 32px;
+    background-color: var(--primary-color);
+    border: none;
+    color: white;
+    font-size: 20px;
+    cursor: pointer;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: right 0.3s ease;
+    z-index: 1001;
+    box-shadow: 0 0 6px rgba(0, 0, 0, 0.2);
+  }
+  
+  .menu {
+    list-style: none;
+    padding: 0;
+    margin-top: 20px;
+  }
+  
+  .menu li {
+    padding: 12px 20px;
+    white-space: nowrap;
+  }
+  
+  .menu li a {
+    color: white;
+    text-decoration: none;
+    display: block;
+    font-size: 14px;
+  }
+  
+  .menu li:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+  }
+  
+  .sidebar.collapsed .menu li a {
+    text-indent: -9999px;
+    overflow: hidden;
+    height: 40px;
+  }
+  

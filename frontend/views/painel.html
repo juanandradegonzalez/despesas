@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Painel de Gestão de Despesas</title>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="sidebar.css" />
+  <style>
+    main.painel {
+      margin-left: 240px;
+      padding: 40px 20px;
+      transition: margin-left 0.3s ease;
+    }
+
+    .info-box {
+      background: var(--card-bg);
+      border: 1px solid var(--border-color);
+      padding: 30px;
+      border-radius: var(--radius);
+      max-width: 600px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.05);
+      margin: 0 auto;
+    }
+
+    .info-box p {
+      font-size: 1.1rem;
+      margin-bottom: 12px;
+    }
+
+    .info-box span {
+      font-weight: bold;
+      color: var(--primary-color);
+    }
+
+    @media (max-width: 768px) {
+      main.painel {
+        margin-left: 60px;
+        padding: 20px 10px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Sidebar será carregado aqui -->
+  <div id="sidebar-container"></div>
+
+  <!-- Conteúdo principal -->
+  <main class="painel">
+    <h2>Painel Inicial de Gestão das Despesas</h2>
+
+    <div class="info-box">
+      <p><span>Colaborador:</span> Juan Miguel Andrade Obinu Gonzalez</p>
+      <p><span>Afiliação:</span> Rarotec</p>
+      <p><span>CPF do Colaborador:</span> 090.514.204-71</p>
+    </div>
+  </main>
+
+  <script>
+    fetch('sidebar.html')
+      .then(res => res.text())
+      .then(html => {
+        document.getElementById('sidebar-container').innerHTML = html;
+
+        const script = document.createElement('script');
+        script.src = 'sidebar.js';
+        script.onload = () => {
+          if (typeof iniciarSidebar === 'function') iniciarSidebar();
+        };
+        document.body.appendChild(script);
+      });
+  </script>
+</body>
+</html>
