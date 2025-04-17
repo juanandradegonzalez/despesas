@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "start": "node backend/server.js",  // Comando de start para Render
+    "start": "node backend/server.js", 
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
@@ -16,7 +16,7 @@
     "dotenv": "^16.5.0",
     "express": "^5.1.0",
     "jsonwebtoken": "^9.0.2",
-    "pg": "^8.7.1",  // Substituindo mysql2 por pg para PostgreSQL
+    "pg": "^8.7.1",
     "sqlite3": "^5.1.7"
   }
 }
