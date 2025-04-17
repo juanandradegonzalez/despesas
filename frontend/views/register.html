@@ -69,7 +69,7 @@
       }
 
       try {
-        const res = await fetch('http://localhost:3000/api/auth/register', {
+        const res = await fetch('https://despesas-qo84.onrender.com/api/auth/register', {  // URL atualizada para o backend no Render
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({ nome, cpf, senha, pergunta, resposta })

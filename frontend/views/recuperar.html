@@ -46,7 +46,7 @@
       msg.textContent = '';
 
       try {
-        const res = await fetch('http://localhost:3000/api/auth/redefinir', {
+        const res = await fetch('https://despesas-qo84.onrender.com/api/auth/redefinir', {  // URL do backend no Render
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({ cpf, pergunta, resposta, novaSenha })

@@ -36,18 +36,18 @@
       msg.textContent = '';
 
       try {
-        const res = await fetch('https://SEU_BACKEND_PUBLICO.up.railway.app/api/login', {
-  method: 'POST',
-  headers: { 'Content-Type': 'application/json' },
-  credentials: 'include',
-  body: JSON.stringify({ cpf, senha })
-});
+        const res = await fetch('https://despesas-qo84.onrender.com/api/login', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          credentials: 'include',
+          body: JSON.stringify({ cpf, senha })
+        });
 
         const data = await res.json();
 
         if (res.ok) {
           localStorage.setItem('token', data.token);
-          window.location.href = 'dashboard.html';
+          window.location.href = 'painel.html';
         } else {
           msg.textContent = data.mensagem || 'Erro ao fazer login.';
         }
